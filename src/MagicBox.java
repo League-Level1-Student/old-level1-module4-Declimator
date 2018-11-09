@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 MediaPalace door;
+JFrame frame = new JFrame("The Magic Box contains many secrets...");
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -51,7 +53,7 @@ MediaPalace door;
 	}
 
 	private void createUI() {
-		JFrame frame = new JFrame("The Magic Box contains many secrets...");
+		
 		frame.add(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
@@ -80,8 +82,10 @@ MediaPalace door;
 		System.out.println(e.getX() + ", " + e.getY());
 if(e.getX()>336 && e.getX()<362 && e.getY()>615 && e.getY()<680) {
 	door = new MediaPalace();
-	door.loadImageFromWithinProject("opendoor.jpeg");
-	System.out.println("test");
+	door.speak("test");
+	frame.removeAll();
+	frame.add(door.loadImageFromWithinProject("opendoor.jpeg"));
+	frame.pack();
 }
 
 	}
